@@ -160,10 +160,11 @@ module "masters" {
   source     = "../tf_hosts"
   depends_on = [aws_key_pair.pvc_base, data.aws_ami.pvc_base]
 
-  prefix          = var.prefix
-  name            = "${var.prefix}-master"
-  image_id        = data.aws_ami.pvc_base.image_id
-  instance_type   = "m5.4xlarge"
+  prefix   = var.prefix
+  name     = "${var.prefix}-master"
+  image_id = data.aws_ami.pvc_base.image_id
+  # instance_type   = "m5.4xlarge"
+  instance_type   = "m5.xlarge"
   ssh_key_pair    = aws_key_pair.pvc_base.key_name
   subnet_ids      = module.cluster_network.private_subnets[*].id
   security_groups = [module.cluster_network.intra_cluster_security_group.id]
@@ -178,11 +179,12 @@ module "workers" {
   source     = "../tf_hosts"
   depends_on = [aws_key_pair.pvc_base, data.aws_ami.pvc_base]
 
-  prefix          = var.prefix
-  name            = "${var.prefix}-worker"
-  quantity        = 2
-  image_id        = data.aws_ami.pvc_base.image_id
-  instance_type   = "c5.2xlarge"
+  prefix   = var.prefix
+  name     = "${var.prefix}-worker"
+  quantity = 2
+  image_id = data.aws_ami.pvc_base.image_id
+  # instance_type   = "c5.2xlarge"
+  instance_type   = "c5.xlarge"
   ssh_key_pair    = aws_key_pair.pvc_base.key_name
   subnet_ids      = module.cluster_network.private_subnets[*].id
   security_groups = [module.cluster_network.intra_cluster_security_group.id]
