@@ -77,8 +77,10 @@ license_local_tmp_path: /tmp/cloudera_license.txt
 
 ###  RDBMS
 
+# database_type: postgresql
+# database_version: 12
 database_type: mysql
-database_version: 8.0
+database_version: 8
 database_tls: true
 database_default_password: "{{ common_password }}"
 
